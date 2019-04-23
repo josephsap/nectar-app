@@ -1,0 +1,13 @@
+buildspec.yml
+.github
+.git
+.travis*
+.dockerignore
+Dockerfile*
+**/node_modules
+**/__mocks__
+**/__tests__
+**/.next
+**/coverage
+**/cypress
+*-debug.log

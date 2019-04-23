@@ -1,0 +1,10 @@
+type CreatePostPayload {
+  errors: [String!]!
+  post: Post
+}
+
+extend type Mutation {
+  createPost(
+    title: String!
+  ): CreatePostPayload!
+}

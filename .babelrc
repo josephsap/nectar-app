@@ -1,0 +1,12 @@
+{
+  "plugins": ["@babel/plugin-proposal-class-properties", "@babel/plugin-proposal-object-rest-spread"],
+  "presets": ["next/babel"],
+  "env": {
+    "development": {
+      "plugins": [["emotion", { "sourceMap": true, "autoLabel": true }]]
+    },
+    "production": {
+      "plugins": [["emotion"]]
+    }
+  }
+}

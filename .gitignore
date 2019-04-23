@@ -1,0 +1,27 @@
+# Mac Finder Folder Attributes
+.DS_Store
+:
+# Logs
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# NextJS build directories
+.next
+
+# Generated webpack stats files
+gen/
+
+# IDE and Editors
+.idea
+
+# Code Coverage Reports
+coverage/
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+
+# Webpack Bundle Analyzer
+bundle-analyzer/

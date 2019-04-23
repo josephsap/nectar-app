@@ -1,0 +1,4 @@
+extend type Query {
+  coins: [Coin]!
+  coin(symbol: String): Coin
+}

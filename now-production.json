@@ -1,0 +1,15 @@
+{
+  "name": "crypto",
+  "version": 1,
+  "alias": "crypto",
+  "dotenv": ".env.production",
+  "build": {
+    "env": {
+      "NPM_TOKEN": "@npm-token"
+    }
+  },
+  "engines": {
+    "node": "10.15.1"
+  },
+  "type": "docker"
+}
