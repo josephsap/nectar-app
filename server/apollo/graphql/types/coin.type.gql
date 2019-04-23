@@ -2,11 +2,15 @@ type Coin {
   id: ID
   symbol: String
   name: String
-  slug: String
-  quote: Quote
+  rank: String
+  description: String
+  proof_type: String
 }
 
-type Quote {
-  price: String
-  market_cap: String
+type CoinHistory {
+  id: ID
+  open: String
+  high: String
+  low: String
+  close: String
 }

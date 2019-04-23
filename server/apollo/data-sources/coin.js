@@ -3,7 +3,7 @@ const { RESTDataSource } = require('apollo-datasource-rest');
 class CoinAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/';
+    this.baseURL = 'https://api.coinpaprika.com/v1/';
   }
 
   coinReducer(coin) {
@@ -11,25 +11,28 @@ class CoinAPI extends RESTDataSource {
       id: coin.id,
       name: coin.name,
       symbol: coin.symbol,
-      slug: coin.slug,
-      quote: {
-        price: coin.quote.USD.price,
-        market_cap: coin.quote.USD.market_cap,
-      }
+      rank: coin.rank,
+      description: coin.description || null,
+      proof_type: coin.proof_type || null,
+      coinHistory: coin.coinHistory || []
     };
   }
 
   async getAllCoins() {
-    const response = await this.get('listings/latest', { CMC_PRO_API_KEY: '0a00b2a6-6f32-4e59-ae20-aae953d1a917' });
-    return response.data.map(coin => this.coinReducer(coin));
+    const response = await this.get('coins');
+    const top50Coins = response.slice(0, 50);
+    return top50Coins.map(coin => this.coinReducer(coin));
   }
 
-  async getCoinBySymbol({ symbol }) {
-    const response = await this.get(`quotes/latest?symbol=${symbol}`, { CMC_PRO_API_KEY: '0a00b2a6-6f32-4e59-ae20-aae953d1a917' });
-    return this.coinReducer(response.data[`${symbol}`]);
+  async getCoinById({ coinId }) {
+    const response = await this.get(`coins/${coinId}`);
+    return this.coinReducer(response);
+  }
+
+  async getCoinHistory(coinId) {
+    const response = await this.get(`coins/${coinId}/ohlcv/historical?start=2019-01-01&end=2019-01-20`);
+    return response;
   }
 }
 
 module.exports = CoinAPI;
-
-// https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest

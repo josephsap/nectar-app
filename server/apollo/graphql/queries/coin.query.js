@@ -2,10 +2,9 @@
 const resolverMap = {
   Query: {
     coins: (_, __, { dataSources }) => dataSources.coinAPI.getAllCoins(),
-    coin: (_, { symbol }, { dataSources }) => {
-      return dataSources.coinAPI.getCoinBySymbol({ symbol });
-    },
+    coin: (_, { coinId }, { dataSources }) => dataSources.coinAPI.getCoinById({ coinId }),
   },
+
 };
 
 module.exports = resolverMap;

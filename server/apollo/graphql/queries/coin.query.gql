@@ -1,4 +1,4 @@
 extend type Query {
   coins: [Coin]!
-  coin(symbol: String): Coin
+  coin(coinId: String): Coin
 }
