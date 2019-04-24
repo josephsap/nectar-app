@@ -22,6 +22,7 @@ app.prepare()
     if (dev === false) server.use(nextStaticMiddleware());
     server.use(nextNoCachePagesMiddleware());
 
+    // a fallback that says all other routes should be handled by Next.js if no overriding routing behaviour is defined:
     server.get('*', (req, res) => {
       handle(req, res);
     });

@@ -19,6 +19,7 @@ class CoinAPI extends RESTDataSource {
   }
 
   async getAllCoins() {
+    console.log('all coins in server')
     const response = await this.get('coins');
     const top50Coins = response.slice(0, 50);
     return top50Coins.map(coin => this.coinReducer(coin));
