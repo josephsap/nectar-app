@@ -6,7 +6,6 @@ import AllCoins from '../components/AllCoins';
 function Home() {
   return (
     <div>
-      Welcome to Next.js123!
       <AllCoins />
     </div>
   );

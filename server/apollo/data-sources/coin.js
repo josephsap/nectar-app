@@ -19,7 +19,6 @@ class CoinAPI extends RESTDataSource {
   }
 
   async getAllCoins() {
-    console.log('all coins in server')
     const response = await this.get('coins');
     const top50Coins = response.slice(0, 50);
     return top50Coins.map(coin => this.coinReducer(coin));
@@ -31,7 +30,7 @@ class CoinAPI extends RESTDataSource {
   }
 
   async getCoinHistory(coinId) {
-    const response = await this.get(`coins/${coinId}/ohlcv/historical?start=2019-01-01&end=2019-01-20`);
+    const response = await this.get(`coins/${coinId}/ohlcv/historical?start=2019-01-01&end=2019-01-30`);
     return response;
   }
 }
