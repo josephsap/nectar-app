@@ -17,6 +17,9 @@ const CoinDetail = ({ coinId }) => {
           // format data into array of arrays lik highcharts wants.
           // also getting rid of object keys that aren't numbers
           const highchartsData = data.coin.coinHistory.map((obj) => {
+
+            // format date to milliseconds. should this be a scalar?
+            obj.time_open = Date.parse(obj.time_open);
             return Object.keys(obj).map((key) => {
               const objKey = parseFloat(obj[key]);
               if (!isNaN(objKey % 1) && objKey !== 'undefined') {
@@ -35,11 +38,22 @@ const CoinDetail = ({ coinId }) => {
                 constructorType={'stockChart'}
                 options={{
                   title: {
-                    text: 'My chart',
+                    text: `${data.coin.name} Price Chart`,
                   },
                   series: [
                     {
+                      type: 'candlestick',
+                      name: `${data.coin.name} Price Chart`,
                       data: highchartsData,
+                      dataGrouping: {
+                        units: [
+                          [
+                            'week',
+                            [1],
+                          ],
+                          ['month', [1, 2, 3, 4]],
+                        ],
+                      },
                     },
                   ],
                 }}
@@ -53,25 +67,3 @@ const CoinDetail = ({ coinId }) => {
 };
 
 export default CoinDetail;
-
-// candlestick chart
-// data needs to look like this
-// [
-//   [
-//     1493127000000,
-//     143.91,
-//     144.9,
-//     143.87,
-//     144.53
-//   ],
-//   [
-//     1493213400000,
-//     144.47, open
-//     144.6, high
-//     143.38, low
-//     143.68 close
-//   ]
-// ]
-// https://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/demo/candlestick/
-
-// https://api.highcharts.com/highstock/plotOptions.candlestick

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import CoinDetail from '../components/CoinDetail';
 
 
@@ -6,7 +6,7 @@ class Coin extends Component {
 
   static async getInitialProps({ query }) {
     return {
-      id: query.slug,
+      id: query.id,
     };
   }
 

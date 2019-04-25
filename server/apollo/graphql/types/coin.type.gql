@@ -13,4 +13,5 @@ type CoinHistory {
   high: String
   low: String
   close: String
+  time_open: String
 }

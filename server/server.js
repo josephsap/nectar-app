@@ -22,13 +22,15 @@ app.prepare()
     if (dev === false) server.use(nextStaticMiddleware());
     server.use(nextNoCachePagesMiddleware());
 
-    server.get('/coin/:slug', (req, res) => {
-      return app.render(req, res, '/coin', { slug: req.params.slug });
+    server.get('/coin/:id', (req, res) => {
+      const actualPage = '/coin';
+      const queryParams = { id: req.params.id };
+      return app.render(req, res, actualPage, queryParams);
     });
 
     // a fallback that says all other routes should be handled by Next.js if no overriding routing behaviour is defined:
     server.get('*', (req, res) => {
-      handle(req, res);
+      return handle(req, res);
     });
 
     server.listen(port, (err) => {

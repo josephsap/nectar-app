@@ -30,7 +30,7 @@ class CoinAPI extends RESTDataSource {
   }
 
   async getCoinHistory(coinId) {
-    const response = await this.get(`coins/${coinId}/ohlcv/historical?start=2019-01-01&end=2019-01-30`);
+    const response = await this.get(`coins/${coinId}/ohlcv/historical?start=2019-03-01&end=2019-03-30`);
     return response;
   }
 }
